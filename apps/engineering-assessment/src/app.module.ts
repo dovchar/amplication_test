@@ -1,5 +1,10 @@
 import { Module } from "@nestjs/common";
 import { UserModule } from "./user/user.module";
+import { AreaModule } from "./area/area.module";
+import { CriterionModule } from "./criterion/criterion.module";
+import { IndicatorModule } from "./indicator/indicator.module";
+import { ProjectModule } from "./project/project.module";
+import { AnswerModule } from "./answer/answer.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -18,6 +23,11 @@ import { AuthModule } from "./auth/auth.module";
     ACLModule,
     AuthModule,
     UserModule,
+    AreaModule,
+    CriterionModule,
+    IndicatorModule,
+    ProjectModule,
+    AnswerModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

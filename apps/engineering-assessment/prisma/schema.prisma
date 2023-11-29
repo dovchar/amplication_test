@@ -17,3 +17,55 @@ model User {
   updatedAt DateTime @updatedAt
   username  String   @unique
 }
+
+model Area {
+  createdAt DateTime   @default(now())
+  criteria  Criterion?
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  updatedAt DateTime   @updatedAt
+}
+
+model Criterion {
+  areaId    Area?    @relation(fields: [ID], references: [id])
+  ID        String?  @unique @db.ObjectId
+  createdAt DateTime @default(now())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String?
+  updatedAt DateTime @updatedAt
+}
+
+model Indicator {
+  answer    Answer?
+  createdAt DateTime @default(now())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  projectId Project?
+  score     String?
+  title     String?
+  updatedAt DateTime @updatedAt
+  userId    String?
+}
+
+model Project {
+  createdAt        DateTime   @default(now())
+  desciprion       String?
+  id               String     @id @default(auto()) @map("_id") @db.ObjectId
+  indicators       Indicator? @relation(fields: [indicatorsId], references: [id])
+  indicatorsId     String?    @unique @db.ObjectId
+  linkToBpm        String?
+  linkToConfluence String?
+  manager          String?
+  team             String?
+  title            String?
+  updatedAt        DateTime   @updatedAt
+}
+
+model Answer {
+  createdAt    DateTime   @default(now())
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  indicators   Indicator? @relation(fields: [indicatorsId], references: [id])
+  indicatorsId String?    @unique @db.ObjectId
+  projectId    String?
+  text         String?
+  updatedAt    DateTime   @updatedAt
+}
